@@ -1,0 +1,4 @@
+Test Case 1: Verify Latitude and Longitude passed successfully.
+Test Case 2: Verify Temperature Unit is Kelvin passed successfully.
+Test Case 3: Verify City Name passed successfully.
+Test Case 4: Verify Humidity is within Range passed successfully.

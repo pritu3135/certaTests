@@ -1,0 +1,573 @@
+{
+	"info": {
+		"_postman_id": "430ed1a9-ed27-4709-867b-ae27afc5b656",
+		"name": "OpenWeatherMap Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22336283"
+	},
+	"item": [
+		{
+			"name": "Verify Latitude and Longitude",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify Latitude and Longitude\", function () {",
+							"    const jsonData = pm.response.json();",
+							"",
+							"    // Set the expected latitude and longitude values",
+							"    const expectedLatitude = 51.51;",
+							"    const expectedLongitude = -0.13;",
+							"",
+							"    // Verify latitude",
+							"    pm.expect(jsonData).to.have.nested.property(\"coord.lat\", expectedLatitude);",
+							"",
+							"    // Verify longitude",
+							"    pm.expect(jsonData).to.have.nested.property(\"coord.lon\", expectedLongitude);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d289e10d714a6e88b30761fae22",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London,uk"
+						},
+						{
+							"key": "appid",
+							"value": "b6 907d289e10d714a6e88b30761fae22"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Test verify Latitude and Longitude",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d289e10d714a6e88b30761fae22",
+							"protocol": "https",
+							"host": [
+								"samples",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "London,uk"
+								},
+								{
+									"key": "appid",
+									"value": "b6 907d289e10d714a6e88b30761fae22"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.24.0"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 06 Jan 2024 17:00:20 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e70c27085ed41de5321252b16c9582fe\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "b462a10f-a1a8-411e-a7bd-aa3a319c34da"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.001107"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"coord\": {\n        \"lon\": -0.13,\n        \"lat\": 51.51\n    },\n    \"weather\": [\n        {\n            \"id\": 300,\n            \"main\": \"Drizzle\",\n            \"description\": \"light intensity drizzle\",\n            \"icon\": \"09d\"\n        }\n    ],\n    \"base\": \"stations\",\n    \"main\": {\n        \"temp\": 280.32,\n        \"pressure\": 1012,\n        \"humidity\": 81,\n        \"temp_min\": 279.15,\n        \"temp_max\": 281.15\n    },\n    \"visibility\": 10000,\n    \"wind\": {\n        \"speed\": 4.1,\n        \"deg\": 80\n    },\n    \"clouds\": {\n        \"all\": 90\n    },\n    \"dt\": 1485789600,\n    \"sys\": {\n        \"type\": 1,\n        \"id\": 5091,\n        \"message\": 0.0103,\n        \"country\": \"GB\",\n        \"sunrise\": 1485762037,\n        \"sunset\": 1485794875\n    },\n    \"id\": 2643743,\n    \"name\": \"London\",\n    \"cod\": 200\n}"
+				}
+			]
+		},
+		{
+			"name": "Verify City Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify City Name is London\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"name\", \"London\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d289e10d714a6e88b30761fae22",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London,uk"
+						},
+						{
+							"key": "appid",
+							"value": "b6 907d289e10d714a6e88b30761fae22"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Test verify City Name",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d289e10d714a6e88b30761fae22",
+							"protocol": "https",
+							"host": [
+								"samples",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "London,uk"
+								},
+								{
+									"key": "appid",
+									"value": "b6 907d289e10d714a6e88b30761fae22"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.24.0"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 06 Jan 2024 16:45:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e70c27085ed41de5321252b16c9582fe\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "0ee4a436-851b-432a-adab-448722ee0e06"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.001100"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"coord\": {\n        \"lon\": -0.13,\n        \"lat\": 51.51\n    },\n    \"weather\": [\n        {\n            \"id\": 300,\n            \"main\": \"Drizzle\",\n            \"description\": \"light intensity drizzle\",\n            \"icon\": \"09d\"\n        }\n    ],\n    \"base\": \"stations\",\n    \"main\": {\n        \"temp\": 280.32,\n        \"pressure\": 1012,\n        \"humidity\": 81,\n        \"temp_min\": 279.15,\n        \"temp_max\": 281.15\n    },\n    \"visibility\": 10000,\n    \"wind\": {\n        \"speed\": 4.1,\n        \"deg\": 80\n    },\n    \"clouds\": {\n        \"all\": 90\n    },\n    \"dt\": 1485789600,\n    \"sys\": {\n        \"type\": 1,\n        \"id\": 5091,\n        \"message\": 0.0103,\n        \"country\": \"GB\",\n        \"sunrise\": 1485762037,\n        \"sunset\": 1485794875\n    },\n    \"id\": 2643743,\n    \"name\": \"London\",\n    \"cod\": 200\n}"
+				}
+			]
+		},
+		{
+			"name": "Verify Humidity Range",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify Humidity is within Range\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.nested.property(\"main.humidity\").and.to.be.a('number');",
+							"    pm.expect(jsonData).to.have.nested.property(\"main.humidity\").within(0, 100); // Humidity percentage range",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d289e10d714a6e88b30761fae22",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London,uk"
+						},
+						{
+							"key": "appid",
+							"value": "b6 907d289e10d714a6e88b30761fae22"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Test Humidity range",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d289e10d714a6e88b30761fae22",
+							"protocol": "https",
+							"host": [
+								"samples",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "London,uk"
+								},
+								{
+									"key": "appid",
+									"value": "b6 907d289e10d714a6e88b30761fae22"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.24.0"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 06 Jan 2024 16:46:23 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e70c27085ed41de5321252b16c9582fe\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "a028b7fc-9df3-420b-bc00-fd414b02b340"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.001887"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"coord\": {\n        \"lon\": -0.13,\n        \"lat\": 51.51\n    },\n    \"weather\": [\n        {\n            \"id\": 300,\n            \"main\": \"Drizzle\",\n            \"description\": \"light intensity drizzle\",\n            \"icon\": \"09d\"\n        }\n    ],\n    \"base\": \"stations\",\n    \"main\": {\n        \"temp\": 280.32,\n        \"pressure\": 1012,\n        \"humidity\": 81,\n        \"temp_min\": 279.15,\n        \"temp_max\": 281.15\n    },\n    \"visibility\": 10000,\n    \"wind\": {\n        \"speed\": 4.1,\n        \"deg\": 80\n    },\n    \"clouds\": {\n        \"all\": 90\n    },\n    \"dt\": 1485789600,\n    \"sys\": {\n        \"type\": 1,\n        \"id\": 5091,\n        \"message\": 0.0103,\n        \"country\": \"GB\",\n        \"sunrise\": 1485762037,\n        \"sunset\": 1485794875\n    },\n    \"id\": 2643743,\n    \"name\": \"London\",\n    \"cod\": 200\n}"
+				}
+			]
+		},
+		{
+			"name": "Verify Temperature Range",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify Temperature Unit is Celsius\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.nested.property(\"main.temp\").and.to.be.a('number');",
+							"    pm.expect(jsonData).to.have.nested.property(\"main.temp\").within(0, 373.15); // Celsius range",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d289e10d714a6e88b30761fae22",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London,uk"
+						},
+						{
+							"key": "appid",
+							"value": "b6 907d289e10d714a6e88b30761fae22"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Test verify Temperature Range",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d289e10d714a6e88b30761fae22",
+							"protocol": "https",
+							"host": [
+								"samples",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "London,uk"
+								},
+								{
+									"key": "appid",
+									"value": "b6 907d289e10d714a6e88b30761fae22"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.24.0"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 06 Jan 2024 16:54:12 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e70c27085ed41de5321252b16c9582fe\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "3d150ea7-495e-46f4-86cd-9bf595cdefd6"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.001152"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"coord\": {\n        \"lon\": -0.13,\n        \"lat\": 51.51\n    },\n    \"weather\": [\n        {\n            \"id\": 300,\n            \"main\": \"Drizzle\",\n            \"description\": \"light intensity drizzle\",\n            \"icon\": \"09d\"\n        }\n    ],\n    \"base\": \"stations\",\n    \"main\": {\n        \"temp\": 280.32,\n        \"pressure\": 1012,\n        \"humidity\": 81,\n        \"temp_min\": 279.15,\n        \"temp_max\": 281.15\n    },\n    \"visibility\": 10000,\n    \"wind\": {\n        \"speed\": 4.1,\n        \"deg\": 80\n    },\n    \"clouds\": {\n        \"all\": 90\n    },\n    \"dt\": 1485789600,\n    \"sys\": {\n        \"type\": 1,\n        \"id\": 5091,\n        \"message\": 0.0103,\n        \"country\": \"GB\",\n        \"sunrise\": 1485762037,\n        \"sunset\": 1485794875\n    },\n    \"id\": 2643743,\n    \"name\": \"London\",\n    \"cod\": 200\n}"
+				}
+			]
+		}
+	]
+}
